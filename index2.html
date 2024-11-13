@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Umur pada Tahun Tertentu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('images/index2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        input, select {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 95%;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        /* Styling untuk hamburger menu */
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #FFD700;
+            transition: all 0.3s;
+        }
+
+        /* Menu dropdown dengan efek slide */
+        .dropdown {
+            max-height: 0;
+            overflow: hidden;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 0 10px;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .dropdown.show {
+            max-height: 200px; /* Tinggi maksimum untuk menampilkan menu */
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .dropdown a {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .dropdown a:hover {
+            text-decoration: underline;
+        }
+
+        .clock {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="menu" onclick="toggleDropdown()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <!-- Dropdown menu -->
+    <div class="dropdown" id="menuDropdown">
+        <a href="/">Home</a>
+        <a href="/index3.html">Cek Kecocokan</a>
+        <a href="/index4.html">Cek IQ</a>
+        <a href="/index6.html">Cek Hobi</a>
+        <a href="/index7.html">Cek Cita-Cita</a>
+        <a href="/index8.html">Cek Khodam</a>
+        <a href="/index5.html">About</a>
+    </div>
+
+    <div class="container">
+        <!-- Bagian Jam Indonesia -->
+        <div class="clock" id="clock">Memuat waktu...</div>
+
+        <div class="title">Cek Umur pada Tahun Tertentu</div>
+        <input type="number" id="birthDay" placeholder="Masukkan Tanggal Lahir (1-31)" min="1" max="31">
+        <input type="number" id="birthMonth" placeholder="Masukkan Bulan Lahir (1-12)" min="1" max="12">
+        <input type="number" id="birthYear" placeholder="Masukkan Tahun Lahir">
+        <input type="number" id="targetYear" placeholder="Masukkan Tahun yang Diinginkan">
+        <button onclick="calculateAge()">Cek Umur</button>
+        <p id="ageResult" style="margin-top: 15px; font-size: 1.2em;"></p>
+        <a href="index.html">Kembali ke Menu Utama</a>
+    </div>
+    <footer>
+        &copy; 2024 By HimaruOfficial
+    </footer>
+
+    <script>
+        // Script Jam Indonesia (Zona Waktu Jakarta)
+        function updateClock() {
+            const clockElement = document.getElementById("clock");
+            const now = new Date();
+            const options = { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const time = now.toLocaleTimeString('id-ID', options);
+            clockElement.textContent = `Waktu Jakarta: ${time}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Fungsi Menghitung Umur pada Tahun Tertentu
+        function calculateAge() {
+            const birthDay = parseInt(document.getElementById('birthDay').value);
+            const birthMonth = parseInt(document.getElementById('birthMonth').value) - 1;
+            const birthYear = parseInt(document.getElementById('birthYear').value);
+            const targetYear = parseInt(document.getElementById('targetYear').value);
+
+            if (!isNaN(birthDay) && !isNaN(birthMonth) && !isNaN(birthYear) && !isNaN(targetYear)) {
+                const birthDate = new Date(birthYear, birthMonth, birthDay);
+                const targetDate = new Date(targetYear, birthMonth, birthDay);
+
+                let age = targetYear - birthYear;
+                if (targetDate < birthDate) {
+                    age -= 1;
+                }
+
+                document.getElementById('ageResult').textContent = `Pada tahun ${targetYear}, umur Anda adalah ${age} tahun.`;
+            } else {
+                document.getElementById('ageResult').textContent = 'Mohon masukkan tanggal, bulan, dan tahun lahir serta tahun yang diinginkan.';
+            }
+        }
+
+        // Toggle Dropdown dengan efek slide
+        function toggleDropdown() {
+            const dropdown = document.getElementById("menuDropdown");
+            dropdown.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

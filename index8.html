@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('images/index9.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 95%;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        /* Dropdown Menu */
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #FFD700;
+            transition: all 0.3s;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .dropdown a {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .dropdown a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="menu" onclick="toggleDropdown()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="dropdown" id="menuDropdown">
+        <a href="/">Home</a>
+        <a href="/index2.html">Cek Umur</a>
+        <a href="/index3.html">Cek Kecocokan</a>
+        <a href="/index4.html">Cek IQ</a>
+        <a href="/index6.html">Cek Hobi</a>
+        <a href="/index7.html">Cek Cita-Cita</a>
+        <a href="/index5.html">About</a>
+    </div>
+
+    <div class="container">
+        <div class="title">Cek Khodam Anda</div>
+        <input type="text" id="nameInput" placeholder="Masukkan Nama Anda">
+        <button onclick="generateKhodam()">Cek Khodam</button>
+        <p id="khodamResult" style="margin-top: 15px; font-size: 1.2em;"></p>
+    </div>
+    <footer>
+        &copy; 2024 By HimaruOfficial
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById("menuDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        function generateKhodam() {
+            const name = document.getElementById('nameInput').value;
+            const khodams = [
+                "Khodam Jenggot Hitam yang suka bercanda",
+                "Khodam Rambut Panjang Penjaga Alam",
+                "Khodam Hantu Air Terjun Penghibur Jiwa",
+                "Khodam Tawa Berhantu yang Baik Hati",
+                "Khodam Penasihat Misterius dari Hutan",
+                "Khodam Penari Hutan yang Semangat",
+                "Khodam Tukang Cerita dari Dunia Lain",
+                "Khodam Penggoda Api Semangat",
+                "Khodam Cahaya Bintang yang Nyeleneh",
+                "Khodam Angin Pemeluk Damai",
+                "Khodam Penjelajah Langit Pemurah",
+                "Khodam Tukang Sihir Pecinta Kopi",
+                "Khodam Pembawa Ceria dari Timur",
+                "Khodam Pelindung Lucu yang Setia",
+                "Khodam Petualang Laut Berani",
+                "Khodam Bayangan Penakut Tapi Setia",
+                "Khodam Malam Berjiwa Romantis",
+                "Khodam Penghuni Angin yang Bijaksana",
+                "Khodam Pejuang Tidur Siang",
+                "Khodam Penikmat Mie Instan Tengah Malam",
+                // Add more funny and random khodams here as needed
+            ];
+            const randomKhodam = khodams[Math.floor(Math.random() * khodams.length)];
+            document.getElementById('khodamResult').textContent = `${name}, khodammu adalah: ${randomKhodam}.`;
+        }
+    </script>
+</body>
+</html>

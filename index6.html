@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Hobi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('images/index6.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 95%;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        /* Dropdown menu styling */
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #FFD700;
+            transition: all 0.3s;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .dropdown a {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .dropdown a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dropdown Menu -->
+    <div class="menu" onclick="toggleDropdown()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <!-- Dropdown menu -->
+    <div class="dropdown" id="menuDropdown">
+        <a href="/">Home</a>
+        <a href="/index2.html">Cek Umur</a>
+        <a href="/index4.html">Cek IQ</a>
+        <a href="/index3.html">Cek Kecocokan</a>
+        <a href="/index7.html">Cek Cita-Cita</a>
+        <a href="/index8.html">Cek Khodam</a>
+        <a href="index5.html">Tentang</a>
+    </div>
+    <div class="container">
+        <div class="title">Cek Hobi</div>
+        <input type="text" id="nameInput" placeholder="Masukkan Nama Anda">
+        <button onclick="checkHobby()">Cek Hobi</button>
+        <p id="hobbyResult" style="margin-top: 15px; font-size: 1.2em;"></p>
+        <a href="index.html">Kembali ke Menu Utama</a>
+    </div>
+    <footer>
+        &copy; 2024 By HimaruOfficial
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById("menuDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        function checkHobby() {
+            const name = document.getElementById('nameInput').value;
+            const hobbies = [
+                "bermain catur sambil menari",
+                "menyanyikan lagu pop di kamar mandi",
+                "mengoleksi karet gelang",
+                "membaca buku resep masakan sambil memasak",
+                "bermain petak umpet dengan kucing",
+                "berlatih sulap dengan sendok",
+                "menulis puisi di atas daun",
+                "menciptakan tarian untuk tanaman",
+                "menggali harta karun di halaman belakang",
+                "menjadi detektif untuk mencari makanan hilang"
+            ];
+
+            // Mengambil hobi secara acak dari daftar
+            const randomHobby = hobbies[Math.floor(Math.random() * hobbies.length)];
+            const result = `${name}, hobi Anda mungkin adalah ${randomHobby}!`;
+            document.getElementById('hobbyResult').textContent = result;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek IQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('images/index4.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        /* Navbar styling */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2a2a72; /* Navy background */
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+
+        /* Hamburger icon */
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            color: #FFD700;
+            transition: transform 0.3s;
+            margin-left: 10px;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dropdown container */
+        .dropdown-container {
+            position: fixed;
+            top: 50px; /* Below the navbar */
+            left: -250px; /* Hidden initially */
+            width: 250px;
+            height: 100vh;
+            background-color: #1e3a5f; /* Dark navy */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: left 0.3s ease;
+            z-index: 1;
+        }
+
+        /* Slide-in effect */
+        .dropdown-container.open {
+            left: 0;
+        }
+
+        /* Dropdown links */
+        .dropdown-container a {
+            color: #FFD700;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-container a:hover {
+            background-color: #2a2a72; /* Slightly darker on hover */
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar with menu icon -->
+    <nav>
+        <div class="menu-icon" onclick="toggleDropdown()">&#9776;</div>
+    </nav>
+
+    <!-- Dropdown menu -->
+    <div class="dropdown-container" id="dropdownMenu">
+        <a href="/">Home</a>
+        <a href="/index2.html">Cek Umur</a>
+        <a href="/index3.html">Cek Kecocokan</a>
+        <a href="/index6.html">Cek Hobi</a>
+        <a href="/index7.html">Cek Cita-Cita</a>
+        <a href="/index8.html">Cek Khodam</a>
+        <a href="index5.html">Tentang</a>
+    </div>
+
+    <div class="container">
+        <div class="title">Cek IQ</div>
+        <input type="text" placeholder="Masukkan Nama Anda" id="nameInput">
+        <button onclick="generateIQ()">Cek IQ</button>
+        <p id="result"></p>
+        <a href="index.html">Kembali ke Menu Utama</a>
+    </div>
+    <footer>
+        &copy; 2024 By HimaruOfficial
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('open'); // Toggle slide-in
+        }
+
+        function generateIQ() {
+            const name = document.getElementById('nameInput').value;
+            const iqScore = Math.floor(Math.random() * 50) + 70; // Menghasilkan nilai IQ antara 70-120
+            document.getElementById('result').textContent = `${name}, IQ Anda adalah ${iqScore}.`;
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            const dropdown = document.getElementById('dropdownMenu');
+            if (!event.target.matches('.menu-icon') && dropdown.classList.contains('open')) {
+                dropdown.classList.remove('open');
+            }
+        };
+    </script>
+</body>
+</html>
+
