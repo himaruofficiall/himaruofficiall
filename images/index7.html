@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Cita-Cita</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('images/index8.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 95%;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        /* Hamburger Menu */
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #FFD700;
+            transition: all 0.3s;
+        }
+
+        /* Menu dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 100;
+            animation: slideDown 0.5s forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .dropdown a {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .dropdown a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="menu" onclick="toggleDropdown()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="dropdown" id="menuDropdown">
+        <a href="/">Home</a>
+        <a href="/index2.html">Cek Umur</a>
+        <a href="/index3.html">Cek Kecocokan</a>
+        <a href="/index4.html">Cek IQ</a>
+        <a href="/index6.html">Cek Hobi</a>
+        <a href="/index8.html">Cek Khodam</a>
+        <a href="/index5.html">About</a>
+    </div>
+
+    <div class="container">
+        <div class="title">Cek Cita-Cita</div>
+        <input type="text" id="name" placeholder="Masukkan Nama Anda">
+        <button onclick="generateDream()">Cek Cita-Cita</button>
+        <p id="dreamResult" style="margin-top: 15px; font-size: 1.2em;"></p>
+        <a href="index.html">Kembali ke Menu Utama</a>
+    </div>
+
+    <footer>
+        &copy; 2024 By HimaruOfficial
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById("menuDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block"; // Toggle dropdown
+        }
+
+        function generateDream() {
+            const name = document.getElementById('name').value;
+            const dreams = [
+                "Menjadi presiden.",
+                "Menjadi dokter.",
+                "Menjadi astronot.",
+                "Menjadi guru.",
+                "Menjadi pemimpin dunia.",
+                "Menjadi seniman terkenal.",
+                "Menjadi penulis bestseller.",
+                "Menjadi pelatih olahraga.",
+                "Menjadi pembawa acara TV.",
+                "Menjadi chef bintang.",
+                "Menjadi fotografer profesional.",
+                "Menjadi penari.",
+                "Menjadi pengacara.",
+                "Menjadi ilmuwan.",
+                "Menjadi petugas pemadam kebakaran.",
+                "Menjadi arsitek.",
+                "Menjadi ahli biologi.",
+                "Menjadi programmer.",
+                "Menjadi desainer grafis.",
+                "Menjadi musisi.",
+                "Menjadi influencer media sosial.",
+                "Menjadi pemilik bisnis.",
+                "Menjadi pemain sepak bola.",
+                "Menjadi pemandu wisata.",
+                "Menjadi aktivis lingkungan.",
+                "Menjadi ilmuwan komputer.",
+                "Menjadi ahli gizi.",
+                "Menjadi ahli strategi pemasaran.",
+                "Menjadi pengembang aplikasi.",
+                "Menjadi pemilik toko buku.",
+                "Menjadi psikolog.",
+                "Menjadi seniman grafis.",
+                "Menjadi penjual barang antik.",
+                "Menjadi penggali sejarah.",
+                "Menjadi penjaga museum.",
+                "Menjadi pelukis.",
+                "Menjadi pembuat film.",
+                "Menjadi penyair.",
+                "Menjadi pelatih pribadi.",
+                "Menjadi animator.",
+                "Menjadi desainer interior.",
+                "Menjadi peternak.",
+                "Menjadi peneliti.",
+                "Menjadi atlet profesional.",
+                "Menjadi guru seni.",
+                "Menjadi petugas kesehatan.",
+                "Menjadi pemrogram perangkat lunak.",
+                "Menjadi insinyur.",
+                "Menjadi penulis skenario.",
+                "Menjadi jurnalis.",
+                "Menjadi penyanyi.",
+                "Menjadi perancang busana.",
+                "Menjadi ahli musik.",
+                "Menjadi mekanik.",
+                "Menjadi arsitek lansekap.",
+                "Menjadi pengrajin.",
+                "Menjadi kepala sekolah.",
+                "Menjadi pengusaha muda.",
+                "Menjadi dokter hewan.",
+                "Menjadi pelatih kuda.",
+                "Menjadi guru bahasa asing.",
+                "Menjadi penasihat keuangan.",
+                "Menjadi pengasuh anak.",
+                "Menjadi pengelola acara.",
+                "Menjadi teknisi komputer.",
+                "Menjadi pilot.",
+                "Menjadi ahli fisioterapi.",
+                "Menjadi pengacara hak asasi manusia.",
+                "Menjadi pengamat bintang.",
+                "Menjadi peneliti kimia.",
+                "Menjadi dokter spesialis.",
+                "Menjadi ahli pemasaran.",
+                "Menjadi peneliti forensik.",
+                "Menjadi pengacara pajak.",
+                "Menjadi pemain basket.",
+                "Menjadi perencana pernikahan.",
+                "Menjadi pembuat mainan.",
+                "Menjadi spesialis pengembangan organisasi.",
+                "Menjadi penyiar berita.",
+                "Menjadi desainer produk.",
+                "Menjadi guru matematika.",
+                "Menjadi pelukis mural.",
+                "Menjadi pengembang web.",
+                "Menjadi pendiri yayasan sosial.",
+                "Menjadi petugas perlindungan hewan.",
+                "Menjadi mentor.",
+                "Menjadi penjual bunga.",
+                "Menjadi ahli kerajinan tangan.",
+                "Menjadi peneliti sejarah.",
+                "Menjadi penulis artikel.",
+                "Menjadi pelatih basket.",
+                "Menjadi penggali artefak.",
+                "Menjadi penyelidik kriminal.",
+                "Menjadi pengembang real estate.",
+                "Menjadi penggiat seni.",
+                "Menjadi
+
+                "Menjadi pengembang game mobile.",
+                "Menjadi penjual aksesori fashion.",
+                "Menjadi penyanyi solo.",
+                "Menjadi ahli dalam pendidikan karakter.",
+                "Menjadi penulis biografi.",
+                "Menjadi petugas pengendalian hama.",
+                "Menjadi pelukis cat minyak.",
+                "Menjadi penggali arkeologi."
+            ];
+
+            const randomDream = dreams[Math.floor(Math.random() * dreams.length)];
+            document.getElementById('dreamResult').innerText = `${name}, cita-cita Anda adalah: "${randomDream}"`;
+        }
+    </script>
+</body>
+</html>
+
